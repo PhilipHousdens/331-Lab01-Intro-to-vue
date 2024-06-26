@@ -27,13 +27,20 @@ createApp ({
 
         function addToCart() {
             cart.value += 1
+            inventory.value -= 1;
+            if (inventory.value === 0) {
+                inStock.value = !inStock.value;
+            }
         }
         function updateImage(variantImage){
             image.value = variantImage
         }
-        function buyBtn() {
+        function toggleBuyBtn() {
             inventory.value -= 1;
-            console.log(inventory)
+            console.log(inStock.value)
+        }
+        function toggleStock() {
+            inStock.value = !inStock.value;
         }
 
 
@@ -51,7 +58,8 @@ createApp ({
             cart,
             addToCart,
             updateImage,
-            buyBtn
+            toggleStock,
+            toggleBuyBtn
         }
     }
 }).mount('#app')
