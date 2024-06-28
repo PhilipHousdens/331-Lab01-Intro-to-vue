@@ -20,6 +20,7 @@ const productDisplay = {
             <button class="button" :disabled="!inStock" @click="addToCart" :class="{disabledButton: !inStock}">Add To Cart</button>
             <button class="button" @click="removeCart" >Remove From Cart</button>
         </div>
+        <review-form @review-submitted="addReview"></review-form>
     </div>
     `, 
     props: {
@@ -59,6 +60,12 @@ const productDisplay = {
             emit('remove-cart')
         }
 
+        const reviews = ref([])
+
+        function addReview(review) {
+            reviews.value.push(review)
+        }
+
 
         function updateVariant(index) {
             selectedVariant.value = index;
@@ -94,6 +101,7 @@ const productDisplay = {
             removeCart,
             shipping,
             updateImage,
+            addReview
         }
     }
     
