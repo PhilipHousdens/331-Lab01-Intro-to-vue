@@ -36,9 +36,6 @@ createApp ({
                 inStock.value = !inStock.value;
             }
         }
-        function updateImage(variantImage){
-            image.value = variantImage
-        }
         function updateVariant(index) {
             selectedVariant.value = index;
         }
@@ -51,7 +48,11 @@ createApp ({
         }
 
         const title = computed(() => {
-            return brand.value + ' ' + product.value
+            if (onSale.value === true) {
+                return brand.value + ' ' + product.value + ' is on sale!'
+            } else {
+                return brand.value + ' ' + product.value
+            }
         })
         const image = computed(() => {
             return variants.value[selectedVariant.value].image
@@ -74,7 +75,7 @@ createApp ({
             sizes,
             cart,
             addToCart,
-            updateImage,
+            updateVariant,
             toggleStock,
             toggleBuyBtn
         }
