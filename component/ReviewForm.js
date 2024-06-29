@@ -4,13 +4,13 @@ const reviewForm = {
     <form class="review-form" @submit.prevent="onSubmit">
         <h3>Leave a review</h3>
         <label for="name">Name:</label>
-        <input id="name" v-model="form.name">
+        <input id="name" v-model="name">
 
         <label for="review">Review:</label>
-        <textarea id="review" v-model="form.review"></textarea>
+        <textarea id="review" v-model="review"></textarea>
 
         <label for="rating">Rating:</label>
-        <select id="rating" v-model="form.rating">
+        <select id="rating" v-model="rating">
             <option>5</option>
             <option>4</option>
             <option>3</option>
@@ -18,7 +18,7 @@ const reviewForm = {
             <option>1</option>
         </select>
         <label for="recommend">Would you recommend this product?</label>
-        <input type="checkbox" id="recommend" v-model="form.recommend">
+        <input type="checkbox" id="recommend" v-model="recommend">
 
         <input class="button" type="submit" value="Submit">
     </form>
@@ -27,7 +27,8 @@ const reviewForm = {
         const form = reactive({
             name: '',
             review: '',
-            rating: null
+            rating: null,
+            recommend: false
         });
 
         function onSubmit() {
@@ -54,7 +55,7 @@ const reviewForm = {
         }
 
         return {
-            form,
+            ...toRefs(form),
             onSubmit
         };
     }
