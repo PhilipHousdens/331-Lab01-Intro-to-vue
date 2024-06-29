@@ -10,6 +10,8 @@ const reviewList = {
             <br/>
             "{{ review.review }}"
             <br/>
+            <span v-if="review.recommend">Recommended</span>
+            <span v-else>Not Recommended</span>
         </li>
         </ul>
     </div>
