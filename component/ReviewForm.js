@@ -1,5 +1,6 @@
 const reviewForm = {
-    template: `
+    template: /*html*/
+    `
     <form class="review-form" @submit.prevent="onSubmit">
         <h3>Leave a review</h3>
         <label for="name">Name:</label>
@@ -28,12 +29,21 @@ const reviewForm = {
         });
 
         function onSubmit() {
+            // Check if all fields are filled out
+            if (form.name === '' || form.review === '' || form.rating === null) {
+                alert('Review is incomplete. Please fill out every field.');
+                return;
+            }
+
             const productReview = {
                 name: form.name,
                 review: form.review,
                 rating: form.rating
             };
+
             emit('review-submitted', productReview);
+
+            // Reset form fields
             form.name = '';
             form.review = '';
             form.rating = null;
